@@ -33,12 +33,14 @@ function App() {
     playerDeck,
     computerDeck,
     gameStarted: false,
+    showCards: false,
     roundWinner: null,
     overallWinner: null,
   });
 
   //to eventually be moved to a custom hook
-  const determineWinner = function (playerCard, computerCard) {
+  const determineWinner = function () {
+    console.log("state at the beginning of determineWinner is", state);
     if (state.playerDeck.length === 0) {
       setState((prev) => ({ ...prev, overallWinner: "computer" }));
     }
@@ -46,8 +48,11 @@ function App() {
       setState((prev) => ({ ...prev, overallWinner: "player" }));
     }
 
-    const playerValue = playerCard.substring(1);
-    const computerValue = computerCard.substring(1);
+    const playerCard = state.playerDeck[0];
+    const computerCard = state.computerDeck[0];
+
+    const playerValue = Number(playerCard.substring(1));
+    const computerValue = Number(computerCard.substring(1));
 
     console.log(
       "player value is",
@@ -57,46 +62,63 @@ function App() {
     );
 
     if (playerValue > computerValue) {
+      setState((prev) => ({ ...prev, roundWinner: "player" }));
+      console.log("player is the winner");
+    } else {
+      setState((prev) => ({
+        ...prev,
+        roundWinner: "computer",
+      }));
+      console.log("computer is the winner");
+    }
+  };
+
+  const collectSpoils = function () {
+    const playerCard = state.playerDeck[0];
+    const computerCard = state.computerDeck[0];
+
+    if (state.roundWinner === "player") {
       //add the two cards to the end of the player deck and remove the played card
+
       const updatedPlayerDeck = [...state.playerDeck, playerCard, computerCard];
       updatedPlayerDeck.shift();
       //remove the played card from computer deck
       const updatedComputerDeck = [...state.computerDeck];
       updatedComputerDeck.shift();
 
-      console.log(updatedPlayerDeck, updatedComputerDeck);
-
       setState((prev) => ({
         ...prev,
         playerDeck: updatedPlayerDeck,
-        computerDeck: updatedComputerDeck,
-        roundWinner: "player",
+        updatedComputerDeck,
+        showCards: false,
       }));
     } else {
-      const updatedPlayerDeck = [...state.playerDeck];
-      updatedPlayerDeck.shift();
-
       const updatedComputerDeck = [
         ...state.computerDeck,
-        computerCard,
         playerCard,
+        computerCard,
       ];
       updatedComputerDeck.shift();
-
+      //remove the played card from computer deck
+      const updatedPlayerDeck = [...state.playerDeck];
+      updatedPlayerDeck.shift();
       setState((prev) => ({
         ...prev,
         playerDeck: updatedPlayerDeck,
-        computerDeck: updatedComputerDeck,
-        roundWinner: "computer",
+        updatedComputerDeck,
+        showCards: false,
       }));
     }
   };
 
-  console.log("after played card state", state);
-
   const flipCard = function () {
     console.log("flipcard is firing");
-    determineWinner(state.playerDeck[0], state.computerDeck[0]);
+    setState((prev) => ({
+      ...prev,
+      showCards: true,
+      gameStarted: true,
+    }));
+    determineWinner();
   };
 
   const startGame = function () {
@@ -121,12 +143,21 @@ function App() {
       </div>
     );
   }
+  if (state.showCards) {
+    return (
+      <div>
+        <h1>Computer card is: {state.computerDeck[0]}</h1>
+        <h1>player card is: {state.playerDeck[0]}</h1>
+        <h1>{state.roundWinner} wins this round!</h1>
+        <button onClick={collectSpoils}>collect spoils</button>
+      </div>
+    );
+  }
 
   return (
     <div>
-      <h1>computer card is: {state.computerDeck[0]}</h1>
-      <h1>player card is: {state.playerDeck[0]}</h1>
-      <h1>{state.roundWinner} wins this round!</h1>
+      <h1>Computer card is hidden</h1>
+      <h1>player card is hidden</h1>
 
       <button onClick={flipCard}>flip the card</button>
     </div>

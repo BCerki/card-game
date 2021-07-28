@@ -8,6 +8,21 @@
   height: 12rem;
 }
 
+.card-back {
+  border: 1px black solid;
+  border-radius: 10px;
+  width: 7rem;
+  height: 12rem;
+  text-transform: capitalize;
+}
+
+.card-grid {
+  display: flex;
+  margin: 1rem;
+}
+
+/* individual card styles */
+
 .red-suit {
   color: red;
 }
@@ -38,4 +53,14 @@
   margin: 1.5rem 0;
   font-size: 1.5rem;
   min-width: 4rem;
+}
+
+.deck-label {
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.cards-remaining {
+  text-align: center;
 }

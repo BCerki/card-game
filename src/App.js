@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import _ from "lodash";
 import Card from "./components/Card";
+import CardBack from "./components/CardBack";
 
 //deck set-up
 
@@ -160,6 +161,7 @@ function App() {
   if (!state.gameStarted) {
     return (
       <div>
+        landing page
         <button onClick={startGame}>Start the game</button>
       </div>
     );
@@ -167,10 +169,17 @@ function App() {
   if (state.showCards) {
     return (
       <div>
-        <h1>Computer card is: </h1>
-        <Card card={state.computerDeck[0]} />
-        <h1>player card is: </h1>
-        <Card card={state.playerDeck[0]} />
+        <div className={"card-grid"}>
+          <CardBack
+            deck={"computer"}
+            cardsRemaining={state.computerDeck.length}
+          />
+          <Card card={state.computerDeck[0]} />
+        </div>
+        <div className={"card-grid"}>
+          <CardBack deck={"player"} cardsRemaining={state.playerDeck.length} />
+          <Card card={state.playerDeck[0]} />
+        </div>
         <h1>{state.roundWinner} wins this round!</h1>
         <button onClick={collectSpoils}>collect spoils</button>
       </div>
@@ -179,11 +188,15 @@ function App() {
 
   return (
     <div>
-      <h1>
-        Player has {state.playerDeck.length} cards left; computer has{" "}
-        {state.computerDeck.length}
-      </h1>
-
+      <div className={"card-grid"}>
+        <CardBack
+          deck={"computer"}
+          cardsRemaining={state.computerDeck.length}
+        />
+      </div>
+      <div className={"card-grid"}>
+        <CardBack deck={"player"} cardsRemaining={state.playerDeck.length} />
+      </div>
       <button onClick={flipCard}>flip the card</button>
     </div>
   );

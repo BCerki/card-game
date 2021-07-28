@@ -1,3 +1,7 @@
+.flex {
+  display: flex;
+  flex-direction: row;
+}
 .card-face {
   display: flex;
 
@@ -6,6 +10,7 @@
   border-radius: 10px;
   width: 7rem;
   height: 12rem;
+  margin: 1rem 0;
 }
 
 .card-back {
@@ -14,11 +19,15 @@
   width: 7rem;
   height: 12rem;
   text-transform: capitalize;
+  margin: 1rem;
 }
 
 .card-grid {
   display: flex;
-  margin: 1rem;
+}
+.card-table {
+  display: flex;
+  flex-direction: column;
 }
 
 /* individual card styles */
@@ -55,6 +64,7 @@
   min-width: 4rem;
 }
 
+/* indivual decks */
 .deck-label {
   text-transform: uppercase;
   text-align: center;
@@ -63,4 +73,9 @@
 
 .cards-remaining {
   text-align: center;
+}
+
+/* button */
+.play-button {
+  width: 3rem;
 }

@@ -28,11 +28,13 @@ export default function Card(props) {
     <div className={"card-face " + determineColor()}>
       <div className={"top-left"}>
         {value}
+        <br />
         {suit}
       </div>
       <div className={"card-body"}>{createCardBody(suit)}</div>
       <div className={"bottom-right"}>
         {value}
+        <br />
         {suit}
       </div>
     </div>

@@ -18,10 +18,15 @@
 
 .top-left {
   margin: 0.25rem;
+  text-align: center;
+  line-height: 0.9rem;
 }
 .bottom-right {
   align-self: flex-end;
   margin: 0.25rem;
+  text-align: center;
+  line-height: 0.9rem;
+  transform: rotate(180deg);
 }
 
 .card-body {
@@ -32,4 +37,5 @@
   border: 1px black solid;
   margin: 1.5rem 0;
   font-size: 1.5rem;
+  min-width: 4rem;
 }

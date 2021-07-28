@@ -9,10 +9,32 @@ export default function Card(props) {
       return "red-suit";
     }
   };
+
+  const createCardBody = function (suit) {
+    let result = [];
+    for (let i = 0; i < value; i++) {
+      result.push(suit);
+    }
+    return (
+      <>
+        {result.map((suit) => (
+          <div>{suit}</div>
+        ))}
+      </>
+    );
+  };
+
   return (
     <div className={"card-face " + determineColor()}>
-      {value}
-      {suit}
+      <div className={"top-left"}>
+        {value}
+        {suit}
+      </div>
+      <div className={"card-body"}>{createCardBody(suit)}</div>
+      <div className={"bottom-right"}>
+        {value}
+        {suit}
+      </div>
     </div>
   );
 }

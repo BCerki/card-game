@@ -172,12 +172,15 @@ function App() {
         <div className={"card-grid"}>
           <CardBack
             deck={"computer"}
-            cardsRemaining={state.computerDeck.length}
+            cardsRemaining={state.computerDeck.length - 1}
           />
           <Card card={state.computerDeck[0]} />
         </div>
         <div className={"card-grid"}>
-          <CardBack deck={"player"} cardsRemaining={state.playerDeck.length} />
+          <CardBack
+            deck={"player"}
+            cardsRemaining={state.playerDeck.length - 1}
+          />
           <Card card={state.playerDeck[0]} />
         </div>
         <h1>{state.roundWinner} wins this round!</h1>

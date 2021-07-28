@@ -77,38 +77,34 @@ function App() {
     const playerCard = state.playerDeck[0];
     const computerCard = state.computerDeck[0];
 
+    const updatedComputerDeck = [...state.computerDeck];
+    const updatedPlayerDeck = [...state.playerDeck];
+
     if (state.roundWinner === "player") {
       //add the two cards to the end of the player deck and remove the played card
-
-      const updatedPlayerDeck = [...state.playerDeck, playerCard, computerCard];
+      updatedPlayerDeck.push(playerCard, computerCard);
       updatedPlayerDeck.shift();
       //remove the played card from computer deck
-      const updatedComputerDeck = [...state.computerDeck];
-      updatedComputerDeck.shift();
 
-      setState((prev) => ({
-        ...prev,
-        playerDeck: updatedPlayerDeck,
-        updatedComputerDeck,
-        showCards: false,
-      }));
+      updatedComputerDeck.shift();
     } else {
-      const updatedComputerDeck = [
-        ...state.computerDeck,
-        playerCard,
-        computerCard,
-      ];
+      updatedComputerDeck.push(playerCard, computerCard);
       updatedComputerDeck.shift();
-      //remove the played card from computer deck
-      const updatedPlayerDeck = [...state.playerDeck];
+
       updatedPlayerDeck.shift();
-      setState((prev) => ({
-        ...prev,
-        playerDeck: updatedPlayerDeck,
-        updatedComputerDeck,
-        showCards: false,
-      }));
     }
+    setState((prev) => ({
+      ...prev,
+      playerDeck: updatedPlayerDeck,
+      computerDeck: updatedComputerDeck,
+      showCards: false,
+    }));
+    console.log(
+      "updated player deck",
+      updatedPlayerDeck,
+      "updated computer deck",
+      updatedComputerDeck
+    );
   };
 
   const flipCard = function () {
@@ -156,8 +152,10 @@ function App() {
 
   return (
     <div>
-      <h1>Computer card is hidden</h1>
-      <h1>player card is hidden</h1>
+      <h1>
+        Player has {state.playerDeck.length} cards left; computer has{" "}
+        {state.computerDeck.length}
+      </h1>
 
       <button onClick={flipCard}>flip the card</button>
     </div>

@@ -167,8 +167,10 @@ function App() {
   if (state.showCards) {
     return (
       <div>
-        <h1>Computer card is: {state.computerDeck[0]}</h1>
-        <h1>player card is: {state.playerDeck[0]}</h1>
+        <h1>Computer card is: </h1>
+        <Card card={state.computerDeck[0]} />
+        <h1>player card is: </h1>
+        <Card card={state.playerDeck[0]} />
         <h1>{state.roundWinner} wins this round!</h1>
         <button onClick={collectSpoils}>collect spoils</button>
       </div>

@@ -1,24 +1,28 @@
 .flex {
   display: flex;
   flex-direction: row;
+  font-size: 4vw;
+  max-height: 90vh;
 }
 .card-face {
   display: flex;
   justify-content: space-between;
   border: 1px black solid;
   border-radius: 10px;
-  width: 25vw;
-  height: 40vw;
+
   margin: 1rem 0;
+  max-height: 40vh;
+  max-width: 20vw;
 }
 
 .card-back {
   border: 1px black solid;
   border-radius: 10px;
-  width: 25vw;
-  height: 40vw;
+
   text-transform: capitalize;
   margin: 1rem;
+  max-height: 40vh;
+  max-width: 20vw;
 }
 
 .card-grid {
@@ -42,15 +46,14 @@
 }
 
 .top-left {
-  margin: 0.25rem;
+  margin: 1vw;
   text-align: center;
-  line-height: 0.9rem;
 }
 .bottom-right {
   align-self: flex-end;
-  margin: 0.25rem;
+  margin: 1vw;
   text-align: center;
-  line-height: 0.9rem;
+
   transform: rotate(180deg);
 }
 
@@ -61,8 +64,8 @@
   align-items: center;
   border: 1px black solid;
   margin: 1.5rem 0;
-  font-size: 1.5rem;
-  min-width: 2vw;
+  font-size: 5vw;
+  min-width: 10vw;
 }
 
 /* indivual decks */
@@ -79,6 +82,7 @@
 /* button */
 .play-button {
   width: 15vw;
+  font-size: 3vw;
 }
 
 .winner-announcement {

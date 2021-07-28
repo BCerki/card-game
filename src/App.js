@@ -3,11 +3,42 @@ import "./App.css";
 import _ from "lodash";
 import Card from "./components/Card";
 
-//functions
+//deck set-up
+
+const cardMap = {
+  2: 2,
+  3: 3,
+  4: 4,
+  5: 5,
+  6: 6,
+  7: 7,
+  8: 8,
+  9: 9,
+  10: 10,
+  J: 11,
+  Q: 12,
+  K: 13,
+  A: 14,
+};
+
 const generateDecks = function () {
   const fullDeck = [];
   const suits = ["♠", "♣", "♥", "♦"];
-  const values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+  const values = [
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "J",
+    "Q",
+    "K",
+    "A",
+  ];
 
   for (const suit of suits) {
     for (const value of values) {
@@ -51,15 +82,9 @@ function App() {
     const playerCard = state.playerDeck[0];
     const computerCard = state.computerDeck[0];
 
-    const playerValue = Number(playerCard.substring(1));
-    const computerValue = Number(computerCard.substring(1));
-
-    console.log(
-      "player value is",
-      playerValue,
-      "computer value is",
-      computerValue
-    );
+    const playerValue = Number(cardMap[playerCard.substring(1)]);
+    const computerValue = Number(cardMap[computerCard.substring(1)]);
+    console.log("playervalue", playerValue, computerValue);
 
     if (playerValue > computerValue) {
       setState((prev) => ({ ...prev, roundWinner: "player" }));

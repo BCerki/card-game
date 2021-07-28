@@ -4,20 +4,19 @@
 }
 .card-face {
   display: flex;
-
   justify-content: space-between;
   border: 1px black solid;
   border-radius: 10px;
-  width: 7rem;
-  height: 12rem;
+  width: 7em;
+  height: 12em;
   margin: 1rem 0;
 }
 
 .card-back {
   border: 1px black solid;
   border-radius: 10px;
-  width: 7rem;
-  height: 12rem;
+  width: 7em;
+  height: 12em;
   text-transform: capitalize;
   margin: 1rem;
 }
@@ -26,8 +25,10 @@
   display: flex;
 }
 .card-table {
+  width: 60vw;
   display: flex;
   flex-direction: column;
+  border: pink 1px solid;
 }
 
 /* individual card styles */
@@ -61,7 +62,7 @@
   border: 1px black solid;
   margin: 1.5rem 0;
   font-size: 1.5rem;
-  min-width: 4rem;
+  min-width: 2vw;
 }
 
 /* indivual decks */
@@ -77,5 +78,19 @@
 
 /* button */
 .play-button {
-  width: 3rem;
+  width: 15vw;
+}
+
+.winner-announcement {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 25vw;
+  border: black solid 1px;
+}
+
+span.round-winner {
+  font-size: 5vw;
+  text-transform: uppercase;
 }

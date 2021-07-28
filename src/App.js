@@ -188,7 +188,10 @@ function App() {
             <Card card={state.playerDeck[0]} />
           </div>
         </div>
-        <div>{state.roundWinner} wins this round!</div>
+        <div className="winner-announcement">
+          <span className="round-winner">{state.roundWinner}</span>
+          <br /> wins this round!
+        </div>
       </div>
     );
   }

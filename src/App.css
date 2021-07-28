@@ -7,16 +7,16 @@
   justify-content: space-between;
   border: 1px black solid;
   border-radius: 10px;
-  width: 7em;
-  height: 12em;
+  width: 25vw;
+  height: 40vw;
   margin: 1rem 0;
 }
 
 .card-back {
   border: 1px black solid;
   border-radius: 10px;
-  width: 7em;
-  height: 12em;
+  width: 25vw;
+  height: 40vw;
   text-transform: capitalize;
   margin: 1rem;
 }

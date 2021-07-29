@@ -169,9 +169,13 @@ function App() {
   if (state.showCards) {
     return (
       <div className="flex">
-        <button className="play-button" onClick={collectSpoils}>
-          collect spoils
-        </button>
+        <div className="play-button">
+          <button className="play-button" onClick={collectSpoils}>
+            {state.roundWinner === "player"
+              ? "Collect the spoils"
+              : "Reluctantly give up your card"}
+          </button>
+        </div>
         <div className="card-table">
           <div className={"card-grid"}>
             <CardBack
@@ -190,7 +194,7 @@ function App() {
         </div>
         <div className="winner-announcement">
           <span className="round-winner">{state.roundWinner}</span>
-          <br /> wins this round!
+          wins this round!
         </div>
       </div>
     );
@@ -198,9 +202,11 @@ function App() {
 
   return (
     <div className="flex">
-      <button className="play-button" onClick={flipCard}>
-        flip the card
-      </button>
+      <div className="play-button">
+        <button className="play-button" onClick={flipCard}>
+          Charge!
+        </button>
+      </div>
       <div className="card-table">
         <div className={"card-grid"}>
           <CardBack

@@ -83,8 +83,14 @@
 }
 
 /* button */
-.play-button {
+div.play-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+button.play-button {
   width: 15vw;
+  height: 5vh;
   font-size: 3vw;
 }
 

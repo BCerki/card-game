@@ -58,7 +58,11 @@ const generateDecks = function () {
 };
 
 function App() {
-  const { playerDeck, computerDeck } = generateDecks();
+  //real decks
+  // const { playerDeck, computerDeck } = generateDecks();
+  //stacked decks for testing
+  const playerDeck = ["♠2", "♠6", "♥6"];
+  const computerDeck = ["♠2", "♠8", "♥9"];
 
   //state management
   const [state, setState] = useState({
@@ -68,9 +72,11 @@ function App() {
     showCards: false,
     roundWinner: null,
     overallWinner: null,
+    warDeck: [],
   });
+  console.log("state at beginning of app is", state);
 
-  //to eventually be moved to a custom hook
+  //gameplay functions
   const determineWinner = function () {
     console.log("state at the beginning of determineWinner is", state);
     if (state.playerDeck.length === 0) {
@@ -90,16 +96,22 @@ function App() {
     if (playerValue > computerValue) {
       setState((prev) => ({ ...prev, roundWinner: "player" }));
       console.log("player is the winner");
-    } else {
+    } else if (playerValue < computerValue) {
       setState((prev) => ({
         ...prev,
         roundWinner: "computer",
       }));
       console.log("computer is the winner");
+    } else {
+      setState((prev) => ({
+        ...prev,
+        roundWinner: "tie",
+      }));
+      console.log("tie");
     }
   };
 
-  const collectSpoils = function () {
+  const handleWinnings = function () {
     const playerCard = state.playerDeck[0];
     const computerCard = state.computerDeck[0];
 
@@ -113,24 +125,67 @@ function App() {
       //remove the played card from computer deck
 
       updatedComputerDeck.shift();
-    } else {
+      setState((prev) => ({
+        ...prev,
+        playerDeck: updatedPlayerDeck,
+        computerDeck: updatedComputerDeck,
+        showCards: false,
+      }));
+    }
+    if (state.roundWinner === "computer") {
       updatedComputerDeck.push(playerCard, computerCard);
       updatedComputerDeck.shift();
 
       updatedPlayerDeck.shift();
+
+      setState((prev) => ({
+        ...prev,
+        playerDeck: updatedPlayerDeck,
+        computerDeck: updatedComputerDeck,
+        showCards: false,
+      }));
     }
-    setState((prev) => ({
-      ...prev,
-      playerDeck: updatedPlayerDeck,
-      computerDeck: updatedComputerDeck,
-      showCards: false,
-    }));
-    console.log(
-      "updated player deck",
-      updatedPlayerDeck,
-      "updated computer deck",
-      updatedComputerDeck
-    );
+    if (state.roundWinner === "tie") {
+      updatedComputerDeck.shift();
+      updatedPlayerDeck.shift();
+
+      const warDeck = [playerCard, computerCard];
+
+      //pulled in from determine winner since state change is async
+      if (updatedPlayerDeck.length === 0) {
+        setState((prev) => ({ ...prev, overallWinner: "computer" }));
+      }
+      if (updatedComputerDeck.length === 0) {
+        setState((prev) => ({ ...prev, overallWinner: "player" }));
+      }
+      const playerValue = Number(cardMap[updatedPlayerDeck[0].substring(1)]);
+      const computerValue = Number(
+        cardMap[updatedComputerDeck[0].substring(1)]
+      );
+
+      if (playerValue > computerValue) {
+        setState((prev) => ({
+          ...prev,
+          playerDeck: updatedPlayerDeck.concat(state.warDeck),
+          computerDeck: updatedComputerDeck,
+          roundWinner: "player",
+          warDeck: [],
+        }));
+      } else if (playerValue < computerValue) {
+        setState((prev) => ({
+          ...prev,
+          playerDeck: updatedPlayerDeck,
+          computerDeck: updatedComputerDeck.concat(state.warDeck),
+          roundWinner: "computer",
+          warDeck: [],
+        }));
+      } else {
+        setState((prev) => ({
+          ...prev,
+          roundWinner: "tie",
+        }));
+      }
+    }
   };
 
   const flipCard = function () {
@@ -150,6 +205,24 @@ function App() {
     }));
   };
 
+  //jsx functions
+  const chooseButton = function () {
+    if (state.showCards) {
+      return (
+        <button className="play-button" onClick={handleWinnings}>
+          {state.roundWinner === "player"
+            ? "Collect the winnings"
+            : "Reluctantly give up the winnings"}
+        </button>
+      );
+    }
+    return (
+      <button className="play-button" onClick={flipCard}>
+        Charge!
+      </button>
+    );
+  };
+
   // console.log("winnder is", determineWinner("♥7", "♣4", state));
 
   if (state.overallWinner === "computer") {
@@ -166,16 +239,40 @@ function App() {
       </div>
     );
   }
+
+  if (state.roundWinner === "tie") {
+    return (
+      <div className="flex">
+        <button className="play-button" onClick={handleWinnings}>
+          War!
+        </button>
+        <div className="card-table">
+          <div className={"card-grid"}>
+            <CardBack
+              deck={"computer"}
+              cardsRemaining={state.computerDeck.length - 1}
+            />
+            <Card card={state.computerDeck[0]} />
+          </div>
+          <div className={"card-grid"}>
+            <CardBack
+              deck={"player"}
+              cardsRemaining={state.playerDeck.length - 1}
+            />
+            <Card card={state.playerDeck[0]} />
+          </div>
+        </div>
+        <div className="winner-announcement">
+          <span className="round-winner">{state.roundWinner}!</span>
+        </div>
+      </div>
+    );
+  }
+
   if (state.showCards) {
     return (
       <div className="flex">
-        <div className="play-button">
-          <button className="play-button" onClick={collectSpoils}>
-            {state.roundWinner === "player"
-              ? "Collect the spoils"
-              : "Reluctantly give up your card"}
-          </button>
-        </div>
+        <div className="play-button">{chooseButton()}</div>
         <div className="card-table">
           <div className={"card-grid"}>
             <CardBack
@@ -194,7 +291,7 @@ function App() {
         </div>
         <div className="winner-announcement">
           <span className="round-winner">{state.roundWinner}</span>
-          wins this round!
+          wins!
         </div>
       </div>
     );

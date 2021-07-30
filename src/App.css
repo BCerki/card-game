@@ -12,8 +12,8 @@
   border-radius: 10px;
 
   margin: 1rem 0;
-  height: 10em;
-  width: 6em;
+  height: 20rem;
+  width: 20rem;
 }
 
 .card-back {
@@ -22,21 +22,25 @@
 
   text-transform: capitalize;
   margin: 1rem;
-  height: 10em;
-  width: 6em;
+  height: 20rem;
+  width: 20rem;
+
+  /* height: 10em;
+  width: 6em; */
 }
 
 .card-grid {
   display: flex;
+  max-height: 45vh;
 
   /* border: green 1px solid; */
 }
 .card-table {
   width: 60vw;
+  max-height: 90vh;
   display: flex;
   flex-direction: column;
   /* border: pink 1px solid; */
-  object-fit: scale-down;
 }
 
 /* individual card styles */

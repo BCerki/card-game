@@ -61,8 +61,8 @@ function App() {
   //real decks
   // const { playerDeck, computerDeck } = generateDecks();
   //stacked decks for testing
-  const playerDeck = ["♠2", "♠6", "♥6"];
-  const computerDeck = ["♠2", "♠8", "♥9"];
+  const playerDeck = ["♠6", "♠8", "♥8"];
+  const computerDeck = ["♠6", "♠8", "♥9"];
 
   //state management
   const [state, setState] = useState({
@@ -70,8 +70,7 @@ function App() {
     computerDeck,
     gameStarted: false,
     showCards: false,
-    roundWinner: null,
-    overallWinner: null,
+    roundWinner: null, //don't need an overall winner; use deck length
     warDeck: [],
   });
   console.log("state at beginning of app is", state);
@@ -79,12 +78,6 @@ function App() {
   //gameplay functions
   const determineWinner = function () {
     console.log("state at the beginning of determineWinner is", state);
-    if (state.playerDeck.length === 0) {
-      setState((prev) => ({ ...prev, overallWinner: "computer" }));
-    }
-    if (state.computerDeck.length === 0) {
-      setState((prev) => ({ ...prev, overallWinner: "player" }));
-    }
 
     const playerCard = state.playerDeck[0];
     const computerCard = state.computerDeck[0];
@@ -152,12 +145,7 @@ function App() {
       const warDeck = [playerCard, computerCard];
 
       //pulled in from determine winner since state change is async
-      if (updatedPlayerDeck.length === 0) {
-        setState((prev) => ({ ...prev, overallWinner: "computer" }));
-      }
-      if (updatedComputerDeck.length === 0) {
-        setState((prev) => ({ ...prev, overallWinner: "player" }));
-      }
+
       const playerValue = Number(cardMap[updatedPlayerDeck[0].substring(1)]);
       const computerValue = Number(
         cardMap[updatedComputerDeck[0].substring(1)]
@@ -166,7 +154,7 @@ function App() {
       if (playerValue > computerValue) {
         setState((prev) => ({
           ...prev,
-          playerDeck: updatedPlayerDeck.concat(state.warDeck),
+          playerDeck: updatedPlayerDeck.concat(warDeck),
           computerDeck: updatedComputerDeck,
           roundWinner: "player",
           warDeck: [],
@@ -175,13 +163,15 @@ function App() {
         setState((prev) => ({
           ...prev,
           playerDeck: updatedPlayerDeck,
-          computerDeck: updatedComputerDeck.concat(state.warDeck),
+          computerDeck: updatedComputerDeck.concat(warDeck),
           roundWinner: "computer",
           warDeck: [],
         }));
       } else {
         setState((prev) => ({
           ...prev,
+          playerDeck: updatedPlayerDeck,
+          computerDeck: updatedComputerDeck,
           roundWinner: "tie",
         }));
       }
@@ -225,10 +215,10 @@ function App() {
 
   // console.log("winnder is", determineWinner("♥7", "♣4", state));
 
-  if (state.overallWinner === "computer") {
+  if (state.playerDeck.length === 0) {
     return <div>Computer wins!</div>;
   }
-  if (state.overallWinner === "player") {
+  if (state.computerDeck.length === 0) {
     return <div>Player wins!</div>;
   }
   if (!state.gameStarted) {

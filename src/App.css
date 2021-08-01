@@ -87,11 +87,12 @@ button.start {
   display: flex;
   justify-content: space-between;
   border: 1px black solid;
-  margin: 1rem;
+  margin: 1em;
   border-radius: 10px;
-  height: 90%;
-  aspect-ratio: 9/16;
-  width: 10em;
+  /* aspect-ratio: 9/16; */
+  margin: 1em;
+  height: 12em;
+  width: 7em;
   background-color: white;
 }
 
@@ -103,16 +104,16 @@ button.start {
   border: 1px black solid;
   border-radius: 10px;
   text-transform: capitalize;
-  margin: 1rem;
-  height: 90%;
-  aspect-ratio: 9/16;
-  width: 10em;
+  /* aspect-ratio: 9/16; */
+  margin: 1em;
+  height: 12em;
+  width: 7em;
   background-color: white;
 }
 
 .card-grid {
   display: flex;
-  max-height: 45vh;
+  /* max-height: 45vh; */
 
   /* border: green 1px solid; */
 }
@@ -120,6 +121,7 @@ button.start {
   max-height: 90vh;
   display: flex;
   flex-direction: column;
+  width: 20em;
   /* border: pink 1px solid; */
 }
 
@@ -153,9 +155,9 @@ button.start {
   justify-content: space-around;
   align-items: center;
   border: 1px black solid;
-  margin: 1.5rem 0;
+  margin: 1em 0;
   font-size: 3vw;
-  width: 12vw;
+  width: 6em;
 }
 
 /* indivual decks */
@@ -177,10 +179,10 @@ div.play-button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 10vw;
+  width: 8em;
 }
 button.play-button {
-  min-width: 10vw;
+  /* min-width: 10vw; */
   height: auto;
   font-size: 0.6em;
   /* height: 20vh;
@@ -233,38 +235,4 @@ button.play-button {
 span.round-winner {
   text-transform: uppercase;
   font-size: 10vw;
-}
-
-@media only screen and (max-width: 600px) {
-  .card-face {
-    height: 90%;
-    width: 6em;
-    aspect-ratio: 9/16;
-  }
-
-  .card-back {
-    height: 90%;
-    width: 6em;
-    aspect-ratio: 9/16;
-  }
-
-  .card-body {
-    margin: 1.5rem 0;
-    font-size: 3vw;
-    /* width: 5em; */
-  }
-}
-/* phones */
-@media only screen and (max-width: 400px) {
-  .flex {
-    display: flex;
-    flex-direction: column;
-  }
-
-  button.play-button {
-    width: 15vw;
-    height: auto;
-    font-size: 2.5vw;
-    margin-top: 3em;
-  }
 }

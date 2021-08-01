@@ -223,9 +223,22 @@ function App() {
   }
   if (!state.gameStarted) {
     return (
-      <div>
-        landing page
-        <button onClick={startGame}>Start the game</button>
+      <div className="landing">
+        <div className="war">War</div>
+
+        <button className="start" onClick={startGame}>
+          Start game
+        </button>
+        {/* <div className="credits">
+          Photo by{" "}
+          <a href="https://unsplash.com/@birminghammuseumstrust?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">
+            Birmingham Museums Trust
+          </a>{" "}
+          on{" "}
+          <a href="https://unsplash.com/s/photos/war?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">
+            Unsplash
+          </a>
+        </div> */}
       </div>
     );
   }

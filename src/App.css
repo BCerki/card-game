@@ -1,3 +1,72 @@
+/* general */
+button {
+  background-color: black;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 0.5em;
+  text-transform: uppercase;
+  font-family: "MedievalSharp", cursive;
+  letter-spacing: 0.1em;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+/* landing */
+.landing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  /* background-image: url(birmingham-museums-trust-5EUh-tq31eA-unsplash.jpg); */
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+}
+
+.credits {
+  font-size: 0.5em;
+  font-family: "MedievalSharp", cursive;
+  color: white;
+  margin-bottom: 0.5em;
+}
+
+button.start {
+}
+
+@keyframes war {
+  0% {
+    color: red;
+    opacity: 0;
+  }
+  50% {
+    color: burlywood;
+    opacity: 1;
+  }
+  100% {
+    color: red;
+    opacity: 0;
+  }
+}
+
+.war {
+  animation-name: war;
+  animation-duration: 12s;
+  animation-iteration-count: infinite;
+  font-size: 10em;
+  margin-top: 1em;
+  font-family: "MedievalSharp", cursive;
+  text-transform: uppercase;
+  color: white;
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+/* card page */
 .flex {
   display: flex;
   flex-direction: row;

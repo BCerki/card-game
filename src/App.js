@@ -201,8 +201,8 @@ function App() {
       return (
         <button className="play-button" onClick={handleWinnings}>
           {state.roundWinner === "player"
-            ? "Collect the winnings"
-            : "Reluctantly give up the winnings"}
+            ? "Collect winnings"
+            : "Give up winnings"}
         </button>
       );
     }
@@ -245,61 +245,65 @@ function App() {
 
   if (state.roundWinner === "tie") {
     return (
-      <div className="flex">
-        <div className="play-button">
-          <button className="play-button" onClick={handleWinnings}>
-            War!
-          </button>
-        </div>
-        <div className="card-table">
-          <div className={"card-grid"}>
-            <CardBack
-              deck={"computer"}
-              cardsRemaining={state.computerDeck.length - 1}
-            />
-
-            <Card card={state.computerDeck[0]} />
+      <>
+        <div className="flex">
+          <div className="play-button">
+            <button className="play-button" onClick={handleWinnings}>
+              War!
+            </button>
           </div>
-          <div className={"card-grid"}>
-            <CardBack
-              deck={"player"}
-              cardsRemaining={state.playerDeck.length - 1}
-            />
-            <Card card={state.playerDeck[0]} />
+          <div className="card-table">
+            <div className={"card-grid"}>
+              <CardBack
+                deck={"computer"}
+                cardsRemaining={state.computerDeck.length - 1}
+              />
+
+              <Card card={state.computerDeck[0]} />
+            </div>
+            <div className={"card-grid"}>
+              <CardBack
+                deck={"player"}
+                cardsRemaining={state.playerDeck.length - 1}
+              />
+              <Card card={state.playerDeck[0]} />
+            </div>
           </div>
         </div>
         <div className="winner-announcement">
           <span className="round-winner">{state.roundWinner}!</span>
         </div>
-      </div>
+      </>
     );
   }
 
   if (state.showCards) {
     return (
-      <div className="flex">
-        <div className="play-button">{chooseButton()}</div>
-        <div className="card-table">
-          <div className={"card-grid"}>
-            <CardBack
-              deck={"computer"}
-              cardsRemaining={state.computerDeck.length - 1}
-            />
-            <Card card={state.computerDeck[0]} />
-          </div>
-          <div className={"card-grid"}>
-            <CardBack
-              deck={"player"}
-              cardsRemaining={state.playerDeck.length - 1}
-            />
-            <Card card={state.playerDeck[0]} />
+      <>
+        <div className="flex">
+          <div className="play-button">{chooseButton()}</div>
+          <div className="card-table">
+            <div className={"card-grid"}>
+              <CardBack
+                deck={"computer"}
+                cardsRemaining={state.computerDeck.length - 1}
+              />
+              <Card card={state.computerDeck[0]} />
+            </div>
+            <div className={"card-grid"}>
+              <CardBack
+                deck={"player"}
+                cardsRemaining={state.playerDeck.length - 1}
+              />
+              <Card card={state.playerDeck[0]} />
+            </div>
           </div>
         </div>
         <div className="winner-announcement">
-          <span className="round-winner">{state.roundWinner}</span>
+          <span className="round-winner">{state.roundWinner} </span>
           wins!
         </div>
-      </div>
+      </>
     );
   }
 

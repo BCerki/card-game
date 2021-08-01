@@ -160,6 +160,11 @@ button.start {
   width: 6em;
 }
 
+span.face-card {
+  font-family: "MedievalSharp", cursive;
+  font-size: 3em;
+}
+
 /* indivual decks */
 .deck-label {
   text-transform: uppercase;

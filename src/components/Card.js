@@ -10,7 +10,20 @@ export default function Card(props) {
     }
   };
 
-  const createCardBody = function (suit) {
+  const createCardBody = function (value, suit) {
+    if (value === "K") {
+      return <span className="face-card">K</span>;
+    }
+    if (value === "Q") {
+      return <span className="face-card">Q</span>;
+    }
+    if (value === "J") {
+      return <span className="face-card">J</span>;
+    }
+    if (value === "A") {
+      return <span className="face-card">{suit}</span>;
+    }
+
     let result = [];
     for (let i = 0; i < value; i++) {
       result.push(suit);
@@ -31,7 +44,7 @@ export default function Card(props) {
 
         <div>{suit}</div>
       </div>
-      <div className={"card-body"}>{createCardBody(suit)}</div>
+      <div className={"card-body"}>{createCardBody(value, suit)}</div>
       <div className={"bottom-right"}>
         <div>{value}</div>
 

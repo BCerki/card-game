@@ -59,10 +59,10 @@ const generateDecks = function () {
 
 function App() {
   //real decks
-  // const { playerDeck, computerDeck } = generateDecks();
+  const { playerDeck, computerDeck } = generateDecks();
   //stacked decks for testing
-  const playerDeck = ["♠6", "♠8", "♥8"];
-  const computerDeck = ["♠6", "♠8", "♥9"];
+  // const playerDeck = ["♠6", "♠8", "♥8"];
+  // const computerDeck = ["♠6", "♠8", "♥9"];
 
   //state management
   const [state, setState] = useState({
@@ -233,15 +233,18 @@ function App() {
   if (state.roundWinner === "tie") {
     return (
       <div className="flex">
-        <button className="play-button" onClick={handleWinnings}>
-          War!
-        </button>
+        <div className="play-button">
+          <button className="play-button" onClick={handleWinnings}>
+            War!
+          </button>
+        </div>
         <div className="card-table">
           <div className={"card-grid"}>
             <CardBack
               deck={"computer"}
               cardsRemaining={state.computerDeck.length - 1}
             />
+
             <Card card={state.computerDeck[0]} />
           </div>
           <div className={"card-grid"}>

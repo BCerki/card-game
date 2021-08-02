@@ -100,7 +100,6 @@ button.start {
 
 .card-back {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   border: 1px black solid;
@@ -111,6 +110,38 @@ button.start {
   height: 20em;
   width: 12em;
   background-color: white;
+}
+.card-back-design {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #deb887;
+  opacity: 1;
+  background: linear-gradient(135deg, #ff000055 25%, transparent 25%) -15px 0/
+      30px 30px,
+    linear-gradient(225deg, #ff0000 25%, transparent 25%) -15px 0/ 30px 30px,
+    linear-gradient(315deg, #ff000055 25%, transparent 25%) 0px 0/ 30px 30px,
+    linear-gradient(45deg, #ff0000 25%, #deb887 25%) 0px 0/ 30px 30px;
+  /* background-color: #deb887;
+  opacity: 1;
+  background: linear-gradient(135deg, #f4eeee55 25%, transparent 25%) -15px 0/
+      30px 30px,
+    linear-gradient(225deg, #f4eeee 25%, transparent 25%) -15px 0/ 30px 30px,
+    linear-gradient(315deg, #f4eeee55 25%, transparent 25%) 0px 0/ 30px 30px,
+    linear-gradient(45deg, #f4eeee 25%, #deb887 25%) 0px 0/ 30px 30px; */
+  /* background-color: #ff0000;
+  opacity: 0.9;
+  background: linear-gradient(135deg, #ffffff55 25%, transparent 25%) -15px 0/
+      30px 30px,
+    linear-gradient(225deg, #ffffff 25%, transparent 25%) -15px 0/ 30px 30px,
+    linear-gradient(315deg, #ffffff55 25%, transparent 25%) 0px 0/ 30px 30px,
+    linear-gradient(45deg, #ffffff 25%, #ff0000 25%) 0px 0/ 30px 30px; */
+
+  height: 18em;
+  width: 10em;
+  border: 5px black double;
+  border-radius: 5px;
 }
 
 .card-grid {
@@ -176,7 +207,9 @@ span.face-card {
   text-transform: uppercase;
   text-align: center;
   font-family: "Roboto", sans-serif;
-  font-size: 2em;
+  font-weight: 700;
+  font-size: 1.75em;
+  opacity: 100%;
 }
 
 .cards-remaining {
@@ -201,27 +234,32 @@ button.play-button {
   font-size: 2vw; */
 }
 
-/* .winner-announcement {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 25vw;
-  /* border: black solid 1px; */
-/* text-align: center;
-  color: white;
-  font-family: "MedievalSharp", cursive;
-  letter-spacing: 0.1em;
-} */
-
 @keyframes winner {
   0% {
     color: red;
     opacity: 0;
   }
-  50% {
-    color: burlywood;
+  12.5% {
+    color: yellow;
+  }
+  25% {
+    color: orange;
     opacity: 1;
+  }
+  37.5% {
+    color: green;
+  }
+  50% {
+    color: blue;
+  }
+  62.5% {
+    color: indigo;
+  }
+  75% {
+    color: purple;
+  }
+  87.5% {
+    color: black;
   }
   100% {
     color: red;
@@ -238,9 +276,9 @@ button.play-button {
 
   font-size: 4.25em;
   transform: rotate(35deg);
-  /* animation-name: winner; */
+  animation-name: winner;
   animation-duration: 3s;
-  /* opacity: 0; */
+  opacity: 0;
   font-family: "MedievalSharp", cursive;
   letter-spacing: 0.1em;
   /* background-color: tomato; */
@@ -282,6 +320,12 @@ span.round-winner {
     height: 13em;
     width: 8em;
   }
+  .card-back-design {
+    height: 11.5em;
+    width: 6.5em;
+    border: 1px black double;
+    border-radius: 5px;
+  }
 
   .card-table {
     width: 21em;
@@ -289,7 +333,7 @@ span.round-winner {
   }
   /* indivual decks */
   .deck-label {
-    font-size: 1.35em;
+    font-size: 1.15em;
   }
 
   .cards-remaining {

@@ -59,10 +59,10 @@ const generateDecks = function () {
 
 function App() {
   //real decks
-  const { playerDeck, computerDeck } = generateDecks();
+  // const { playerDeck, computerDeck } = generateDecks();
   //stacked decks for testing
-  // const playerDeck = ["♠6", "♠8", "♥8"];
-  // const computerDeck = ["♠6", "♠8", "♥9"];
+  const playerDeck = ["♠6", "♠8", "♥8"];
+  const computerDeck = ["♠6", "♠8", "♥9"];
 
   //state management
   const [state, setState] = useState({
@@ -216,10 +216,18 @@ function App() {
   // console.log("winnder is", determineWinner("♥7", "♣4", state));
 
   if (state.playerDeck.length === 0) {
-    return <div>Computer wins!</div>;
+    return (
+      <div className="game-over">
+        Game over! <div className="winner">Computer wins!</div>
+      </div>
+    );
   }
   if (state.computerDeck.length === 0) {
-    return <div>Player wins!</div>;
+    return (
+      <div className="game-over">
+        Game over! <div className="winner">Player wins!</div>
+      </div>
+    );
   }
   if (!state.gameStarted) {
     return (

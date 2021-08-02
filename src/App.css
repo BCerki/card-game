@@ -259,6 +259,10 @@ span.round-winner {
   div.play-button {
     height: 4em;
   }
+  .winner-announcement {
+    margin-top: -8em;
+    font-size: 3em;
+  }
 }
 
 @media screen and (max-width: 500px) {
@@ -286,5 +290,9 @@ span.round-winner {
 
   .cards-remaining {
     font-size: 0.675em;
+  }
+  .winner-announcement {
+    margin-top: -8em;
+    font-size: 2em;
   }
 }

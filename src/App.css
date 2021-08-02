@@ -292,7 +292,7 @@ span.round-winner {
 
 @media screen and (max-width: 640px) {
   button {
-    background-color: blue;
+    /* background-color: blue; */
   }
   .flex {
     flex-direction: column;
@@ -309,7 +309,7 @@ span.round-winner {
 
 @media screen and (max-width: 500px) {
   button {
-    background-color: red;
+    /* background-color: red; */
   }
   .card-face {
     height: 13em;

@@ -271,7 +271,9 @@ function App() {
           </div>
         </div>
         <div className="winner-announcement">
-          <span className="round-winner">{state.roundWinner}!</span>
+          <span className="round-winner">
+            {state.roundWinner}! This means WAR!
+          </span>
         </div>
       </>
     );

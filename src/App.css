@@ -138,17 +138,21 @@ button.start {
 }
 
 .top-left {
-  margin: 1vw;
+  margin: 0.25em;
   text-align: center;
   font-family: "MedievalSharp", cursive;
+  font-size: 1.5em;
+  line-height: 1em;
 }
 .bottom-right {
   align-self: flex-end;
-  margin: 1vw;
+  margin: 0.25em;
   text-align: center;
 
   transform: rotate(180deg);
   font-family: "MedievalSharp", cursive;
+  font-size: 1.5em;
+  line-height: 1em;
 }
 
 .card-body {
@@ -158,7 +162,7 @@ button.start {
   align-items: center;
   border: 1px black solid;
   margin: 1em 0;
-  font-size: 1em;
+  font-size: 3em;
   width: 6em;
 }
 
@@ -294,5 +298,8 @@ span.round-winner {
   .winner-announcement {
     margin-top: -8em;
     font-size: 2em;
+  }
+  .card-body {
+    font-size: 1.5em;
   }
 }

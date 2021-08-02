@@ -84,23 +84,23 @@ function App() {
 
     const playerValue = Number(cardMap[playerCard.substring(1)]);
     const computerValue = Number(cardMap[computerCard.substring(1)]);
-    console.log("playervalue", playerValue, computerValue);
+    // console.log("playervalue", playerValue, computerValue);
 
     if (playerValue > computerValue) {
-      setState((prev) => ({ ...prev, roundWinner: "player" }));
-      console.log("player is the winner");
+      setState((prev) => ({ ...prev, roundWinner: "PLAYER" }));
+      // console.log("player is the winner");
     } else if (playerValue < computerValue) {
       setState((prev) => ({
         ...prev,
-        roundWinner: "computer",
+        roundWinner: "COMPUTER",
       }));
-      console.log("computer is the winner");
+      // console.log("computer is the winner");
     } else {
       setState((prev) => ({
         ...prev,
-        roundWinner: "tie",
+        roundWinner: "TIE",
       }));
-      console.log("tie");
+      // console.log("tie");
     }
   };
 
@@ -111,7 +111,7 @@ function App() {
     const updatedComputerDeck = [...state.computerDeck];
     const updatedPlayerDeck = [...state.playerDeck];
 
-    if (state.roundWinner === "player") {
+    if (state.roundWinner === "PLAYER") {
       //add the two cards to the end of the player deck and remove the played card
       updatedPlayerDeck.push(playerCard, computerCard);
       updatedPlayerDeck.shift();
@@ -125,7 +125,7 @@ function App() {
         showCards: false,
       }));
     }
-    if (state.roundWinner === "computer") {
+    if (state.roundWinner === "COMPUTER") {
       updatedComputerDeck.push(playerCard, computerCard);
       updatedComputerDeck.shift();
 
@@ -138,7 +138,7 @@ function App() {
         showCards: false,
       }));
     }
-    if (state.roundWinner === "tie") {
+    if (state.roundWinner === "TIE") {
       updatedComputerDeck.shift();
       updatedPlayerDeck.shift();
 
@@ -156,7 +156,7 @@ function App() {
           ...prev,
           playerDeck: updatedPlayerDeck.concat(warDeck),
           computerDeck: updatedComputerDeck,
-          roundWinner: "player",
+          roundWinner: "PLAYER",
           warDeck: [],
         }));
       } else if (playerValue < computerValue) {
@@ -164,7 +164,7 @@ function App() {
           ...prev,
           playerDeck: updatedPlayerDeck,
           computerDeck: updatedComputerDeck.concat(warDeck),
-          roundWinner: "computer",
+          roundWinner: "COMPUTER",
           warDeck: [],
         }));
       } else {
@@ -172,7 +172,7 @@ function App() {
           ...prev,
           playerDeck: updatedPlayerDeck,
           computerDeck: updatedComputerDeck,
-          roundWinner: "tie",
+          roundWinner: "TIE",
         }));
       }
     }
@@ -200,7 +200,7 @@ function App() {
     if (state.showCards) {
       return (
         <button className="play-button" onClick={handleWinnings}>
-          {state.roundWinner === "player"
+          {state.roundWinner === "PLAYER"
             ? "Collect winnings"
             : "Give up winnings"}
         </button>
@@ -243,7 +243,7 @@ function App() {
     );
   }
 
-  if (state.roundWinner === "tie") {
+  if (state.roundWinner === "TIE") {
     return (
       <>
         <div className="flex">
@@ -255,7 +255,7 @@ function App() {
           <div className="card-table">
             <div className={"card-grid"}>
               <CardBack
-                deck={"computer"}
+                deck={"COMPUTER"}
                 cardsRemaining={state.computerDeck.length - 1}
               />
 
@@ -263,7 +263,7 @@ function App() {
             </div>
             <div className={"card-grid"}>
               <CardBack
-                deck={"player"}
+                deck={"PLAYER"}
                 cardsRemaining={state.playerDeck.length - 1}
               />
               <Card card={state.playerDeck[0]} />
@@ -285,24 +285,21 @@ function App() {
           <div className="card-table">
             <div className={"card-grid"}>
               <CardBack
-                deck={"computer"}
+                deck={"COMPUTER"}
                 cardsRemaining={state.computerDeck.length - 1}
               />
               <Card card={state.computerDeck[0]} />
             </div>
             <div className={"card-grid"}>
               <CardBack
-                deck={"player"}
+                deck={"PLAYER"}
                 cardsRemaining={state.playerDeck.length - 1}
               />
               <Card card={state.playerDeck[0]} />
             </div>
           </div>
         </div>
-        <div className="winner-announcement">
-          <span className="round-winner">{state.roundWinner} </span>
-          wins!
-        </div>
+        <div className="winner-announcement">{state.roundWinner} wins!</div>
       </>
     );
   }
@@ -317,12 +314,12 @@ function App() {
       <div className="card-table">
         <div className={"card-grid"}>
           <CardBack
-            deck={"computer"}
+            deck={"COMPUTER"}
             cardsRemaining={state.computerDeck.length}
           />
         </div>
         <div className={"card-grid"}>
-          <CardBack deck={"player"} cardsRemaining={state.playerDeck.length} />
+          <CardBack deck={"PLAYER"} cardsRemaining={state.playerDeck.length} />
         </div>
       </div>
     </div>

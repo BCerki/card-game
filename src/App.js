@@ -61,8 +61,8 @@ function App() {
   //real decks
   // const { playerDeck, computerDeck } = generateDecks();
   //stacked decks for testing
-  const playerDeck = ["♠6", "♠8", "♥8"];
-  const computerDeck = ["♠6", "♠8", "♥9"];
+  const computerDeck = ["♠6", "♠8", "♥8"];
+  const playerDeck = ["♠6", "♠8", "♥9"];
 
   //state management
   const [state, setState] = useState({
@@ -105,11 +105,13 @@ function App() {
   };
 
   const handleWinnings = function () {
+    console.log("state at beginning of handlewinning is", state);
     const playerCard = state.playerDeck[0];
     const computerCard = state.computerDeck[0];
 
     const updatedComputerDeck = [...state.computerDeck];
     const updatedPlayerDeck = [...state.playerDeck];
+    const updatedWarDeck = [...state.warDeck];
 
     if (state.roundWinner === "PLAYER") {
       //add the two cards to the end of the player deck and remove the played card
@@ -141,8 +143,8 @@ function App() {
     if (state.roundWinner === "TIE") {
       updatedComputerDeck.shift();
       updatedPlayerDeck.shift();
-
-      const warDeck = [playerCard, computerCard];
+      updatedWarDeck.push(playerCard, computerCard);
+      console.log("updatedwardeck is", updatedWarDeck);
 
       //pulled in from determine winner since state change is async
 
@@ -154,7 +156,7 @@ function App() {
       if (playerValue > computerValue) {
         setState((prev) => ({
           ...prev,
-          playerDeck: updatedPlayerDeck.concat(warDeck),
+          playerDeck: updatedPlayerDeck.concat(updatedWarDeck),
           computerDeck: updatedComputerDeck,
           roundWinner: "PLAYER",
           warDeck: [],
@@ -163,13 +165,15 @@ function App() {
         setState((prev) => ({
           ...prev,
           playerDeck: updatedPlayerDeck,
-          computerDeck: updatedComputerDeck.concat(warDeck),
+          computerDeck: updatedComputerDeck.concat(updatedWarDeck),
           roundWinner: "COMPUTER",
           warDeck: [],
         }));
       } else {
+        console.log("setting wardeck state here");
         setState((prev) => ({
           ...prev,
+          warDeck: updatedWarDeck,
           playerDeck: updatedPlayerDeck,
           computerDeck: updatedComputerDeck,
           roundWinner: "TIE",
@@ -179,7 +183,7 @@ function App() {
   };
 
   const flipCard = function () {
-    console.log("flipcard is firing");
+    // console.log("flipcard is firing");
     setState((prev) => ({
       ...prev,
       showCards: true,

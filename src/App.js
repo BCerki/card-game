@@ -208,7 +208,7 @@ function App() {
     }
     return (
       <button className="play-button" onClick={flipCard}>
-        Charge!
+        Flip Card
       </button>
     );
   };
@@ -310,7 +310,7 @@ function App() {
     <div className="flex">
       <div className="play-button">
         <button className="play-button" onClick={flipCard}>
-          Charge!
+          Flip Card
         </button>
       </div>
       <div className="card-table">

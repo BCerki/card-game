@@ -258,39 +258,37 @@ button.play-button {
 
 @keyframes winner {
   0% {
-    color: red;
-    opacity: 0;
+    color: darkgreen;
+    /* opacity: 0; */
   }
   12.5% {
-    color: yellow;
+    color: red;
   }
   25% {
-    color: orange;
+    color: yellow;
     opacity: 1;
   }
   37.5% {
-    color: green;
+    color: orange;
   }
   50% {
-    color: blue;
+    color: green;
   }
   62.5% {
-    color: indigo;
+    color: blue;
   }
   75% {
-    color: purple;
+    color: indigo;
   }
   87.5% {
-    color: black;
+    color: purple;
   }
   100% {
-    color: red;
-    opacity: 0;
-    z-index: -1;
+    color: darkgreen;
   }
 }
 .winner-announcement {
-  color: red;
+  color: darkgreen;
   text-align: center;
   margin-top: -6em;
   width: 100%;
@@ -299,8 +297,9 @@ button.play-button {
   font-size: 4.25em;
   transform: rotate(35deg);
   animation-name: winner;
-  animation-duration: 3s;
-  opacity: 0;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  /* opacity: 0; */
   font-family: "MedievalSharp", cursive;
   letter-spacing: 0.1em;
   /* background-color: tomato; */

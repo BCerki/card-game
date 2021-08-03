@@ -79,22 +79,12 @@ function App() {
   const determineWinner = function () {
     console.log("state at the beginning of determineWinner is", state);
 
-    //make copies of all the decks in state--will be added and subtracted to depending on winner
-    const updatedComputerDeck = [...state.computerDeck];
-    const updatedPlayerDeck = [...state.playerDeck];
-    const updatedWarDeck = [...state.warDeck];
-
     //convenience variables for currently played card
     const playerCard = state.playerDeck[0];
     const computerCard = state.computerDeck[0];
 
     const playerValue = Number(cardMap[playerCard.substring(1)]);
     const computerValue = Number(cardMap[computerCard.substring(1)]);
-
-    //remove the played cards from the player and computer decks and put in a temp deck
-    updatedWarDeck.push(playerCard, computerCard);
-    updatedPlayerDeck.shift();
-    updatedComputerDeck.shift();
 
     //set the winner of the round based on card value
     let roundWinner = null;
@@ -111,18 +101,20 @@ function App() {
     //put all the above calculations into state
     setState((prev) => ({
       ...prev,
-      playerDeck: updatedPlayerDeck,
-      computerDeck: updatedComputerDeck,
-      warDeck: updatedWarDeck,
       roundWinner: roundWinner,
     }));
   };
 
   const handleWinnings = function () {
+    //make copies of all the decks in state--will be added and subtracted to depending on winner
     const updatedComputerDeck = [...state.computerDeck];
     const updatedPlayerDeck = [...state.playerDeck];
     const updatedWarDeck = [...state.warDeck];
-    // console.log("state at beginning of handlewinning is", state);
+
+    //remove the played cards from the player and computer decks and put in a temp deck
+    updatedWarDeck.push(state.playerDeck[0], state.computerDeck[0]);
+    updatedPlayerDeck.shift();
+    updatedComputerDeck.shift();
 
     if (state.roundWinner === "PLAYER") {
       setState((prev) => ({
@@ -235,7 +227,7 @@ function App() {
             <div className={"card-grid"}>
               <CardBack
                 deck={"COMPUTER"}
-                cardsRemaining={state.computerDeck.length}
+                cardsRemaining={state.computerDeck.length - 1}
               />
 
               <Card card={state.computerDeck[0]} />
@@ -243,7 +235,7 @@ function App() {
             <div className={"card-grid"}>
               <CardBack
                 deck={"PLAYER"}
-                cardsRemaining={state.playerDeck.length}
+                cardsRemaining={state.playerDeck.length - 1}
               />
               <Card card={state.playerDeck[0]} />
             </div>
@@ -267,14 +259,14 @@ function App() {
             <div className={"card-grid"}>
               <CardBack
                 deck={"COMPUTER"}
-                cardsRemaining={state.computerDeck.length}
+                cardsRemaining={state.computerDeck.length - 1}
               />
               <Card card={state.computerDeck[0]} />
             </div>
             <div className={"card-grid"}>
               <CardBack
                 deck={"PLAYER"}
-                cardsRemaining={state.playerDeck.length}
+                cardsRemaining={state.playerDeck.length - 1}
               />
               <Card card={state.playerDeck[0]} />
             </div>
@@ -284,7 +276,7 @@ function App() {
       </>
     );
   }
-  //hidden cards view
+  //non-flipped cards view
   return (
     <div className="flex">
       <div className="play-button">

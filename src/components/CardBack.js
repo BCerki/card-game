@@ -1,4 +1,4 @@
-export default function Card(props) {
+export default function CardBack(props) {
   // const determineDeck = function () {
   //   if (props.deck === "COMPUTER") {
   //     return "computer-deck";

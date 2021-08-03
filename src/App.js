@@ -59,10 +59,10 @@ const generateDecks = function () {
 
 function App() {
   //real decks
-  // const { playerDeck, computerDeck } = generateDecks();
+  const { playerDeck, computerDeck } = generateDecks();
   //stacked decks for testing
-  const computerDeck = ["♠10", "♠7", "♥Q", "♥K"];
-  const playerDeck = ["♠6", "♠7", "♥8", "♥9"];
+  // const computerDeck = ["♠10", "♠7", "♥Q", "♥K"];
+  // const playerDeck = ["♠6", "♠7", "♥8", "♥9"];
 
   //state management
   const [state, setState] = useState({

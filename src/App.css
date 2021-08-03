@@ -162,7 +162,7 @@ button.start {
 
   height: 18em;
   width: 10em;
-  border: 5px black double;
+  border: 3px black solid;
   border-radius: 5px;
 }
 

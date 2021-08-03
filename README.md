@@ -4,9 +4,8 @@ Find the deployed game here: https://wizardly-rosalind-83d014.netlify.app/(https
 
 Here's a sneak preview:
 
-![Screenshot of Desktop View](https://github.com/BCerki/card-game/blob/production/docs/desktopView.png)
-
-![Gif of Mobile View](https://github.com/BCerki/card-game/blob/production/docs/mobileView.gif)
+!["Gif of Mobile View"](https://github.com/BCerki/card-game/blob/production/docs/mobileView.gif)
+!["Screenshot of Desktop View"](https://github.com/BCerki/card-game/blob/production/docs/desktopView.png)
 
 ## Tech Stack
 

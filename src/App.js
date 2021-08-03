@@ -59,10 +59,10 @@ const generateDecks = function () {
 
 function App() {
   //real decks
-  const { playerDeck, computerDeck } = generateDecks();
+  // const { playerDeck, computerDeck } = generateDecks();
   //stacked decks for testing
-  // const computerDeck = ["♠6", "♠8", "♥8"];
-  // const playerDeck = ["♠6", "♠8", "♥9"];
+  const computerDeck = ["♠6", "♠8", "♥8"];
+  const playerDeck = ["♠6", "♠8", "♥9"];
 
   //state management
   const [state, setState] = useState({
@@ -268,7 +268,7 @@ function App() {
             <div className={"card-grid"}>
               <CardBack
                 deck={"COMPUTER"}
-                cardsRemaining={state.computerDeck.length - 1}
+                cardsRemaining={state.computerDeck.length}
               />
 
               <Card card={state.computerDeck[0]} />
@@ -276,7 +276,7 @@ function App() {
             <div className={"card-grid"}>
               <CardBack
                 deck={"PLAYER"}
-                cardsRemaining={state.playerDeck.length - 1}
+                cardsRemaining={state.playerDeck.length}
               />
               <Card card={state.playerDeck[0]} />
             </div>

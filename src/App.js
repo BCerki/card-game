@@ -74,6 +74,7 @@ function App() {
     warDeck: [],
     destination: null,
   });
+  console.log("state.destination is", state.destination);
   // console.log("state at beginning of app is", state);
 
   //gameplay functions
@@ -236,6 +237,7 @@ function App() {
 
   //do this with react-router-dom post-hackaton
   const redirect = function (destination) {
+    console.log("destination is", destination);
     setState((prev) => ({ ...prev, destination: destination }));
   };
 
@@ -280,6 +282,16 @@ function App() {
       </div>
     );
   }
+
+  if (state.destination === "rules") {
+    return <div>Rules of war</div>;
+  }
+
+  if (state.destination === "about") {
+    return <div>About</div>;
+  }
+
+  //GAME VIEWS
   //tie view
   if (state.roundWinner === "TIE") {
     return (

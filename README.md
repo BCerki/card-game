@@ -1,6 +1,6 @@
 # War
 
-Find the deployed game here: https://wizardly-rosalind-83d014.netlify.app/(https://wizardly-rosalind-83d014.netlify.app/)
+Find the deployed game here: https://wizardly-rosalind-83d014.netlify.app/
 
 Here's a sneak preview:
 

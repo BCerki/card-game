@@ -59,10 +59,10 @@ const generateDecks = function () {
 
 function App() {
   //real decks
-  // const { playerDeck, computerDeck } = generateDecks();
+  const { playerDeck, computerDeck } = generateDecks();
   //stacked decks for testing
-  const computerDeck = ["♠6", "♠8", "♥8"];
-  const playerDeck = ["♠6", "♠8", "♥9"];
+  // const computerDeck = ["♠6", "♠8", "♥8"];
+  // const playerDeck = ["♠6", "♠8", "♥9"];
 
   //state management
   const [state, setState] = useState({
@@ -79,111 +79,110 @@ function App() {
   const determineWinner = function () {
     console.log("state at the beginning of determineWinner is", state);
 
+    //make copies of all the decks in state--will be added and subtracted to depending on winner
+    const updatedComputerDeck = [...state.computerDeck];
+    const updatedPlayerDeck = [...state.playerDeck];
+    const updatedWarDeck = [...state.warDeck];
+
+    //convenience variables for currently played card
     const playerCard = state.playerDeck[0];
     const computerCard = state.computerDeck[0];
 
     const playerValue = Number(cardMap[playerCard.substring(1)]);
     const computerValue = Number(cardMap[computerCard.substring(1)]);
-    // console.log("playervalue", playerValue, computerValue);
+
+    //remove the played cards from the player and computer decks and put in a temp deck
+    updatedWarDeck.push(playerCard, computerCard);
+    updatedPlayerDeck.shift();
+    updatedComputerDeck.shift();
+
+    //set the winner of the round based on card value
+    let roundWinner = null;
 
     if (playerValue > computerValue) {
-      setState((prev) => ({ ...prev, roundWinner: "PLAYER" }));
-      // console.log("player is the winner");
-    } else if (playerValue < computerValue) {
-      setState((prev) => ({
-        ...prev,
-        roundWinner: "COMPUTER",
-      }));
-      // console.log("computer is the winner");
-    } else {
-      setState((prev) => ({
-        ...prev,
-        roundWinner: "TIE",
-      }));
-      // console.log("tie");
+      roundWinner = "PLAYER";
     }
+    if (playerValue < computerValue) {
+      roundWinner = "COMPUTER";
+    }
+    if (playerValue === computerValue) {
+      roundWinner = "TIE";
+    }
+    //put all the above calculations into state
+    setState((prev) => ({
+      ...prev,
+      playerDeck: updatedPlayerDeck,
+      computerDeck: updatedComputerDeck,
+      warDeck: updatedWarDeck,
+      roundWinner: roundWinner,
+    }));
   };
 
   const handleWinnings = function () {
-    console.log("state at beginning of handlewinning is", state);
-    const playerCard = state.playerDeck[0];
-    const computerCard = state.computerDeck[0];
-
     const updatedComputerDeck = [...state.computerDeck];
     const updatedPlayerDeck = [...state.playerDeck];
     const updatedWarDeck = [...state.warDeck];
+    // console.log("state at beginning of handlewinning is", state);
 
     if (state.roundWinner === "PLAYER") {
-      //add the two cards to the end of the player deck and remove the played card
-      updatedPlayerDeck.push(playerCard, computerCard);
-      updatedPlayerDeck.shift();
-      //remove the played card from computer deck
-
-      updatedComputerDeck.shift();
       setState((prev) => ({
         ...prev,
-        playerDeck: updatedPlayerDeck,
+        playerDeck: updatedPlayerDeck.concat(updatedWarDeck),
         computerDeck: updatedComputerDeck,
         showCards: false,
+        warDeck: [],
       }));
     }
     if (state.roundWinner === "COMPUTER") {
-      updatedComputerDeck.push(playerCard, computerCard);
-      updatedComputerDeck.shift();
-
-      updatedPlayerDeck.shift();
-
       setState((prev) => ({
         ...prev,
         playerDeck: updatedPlayerDeck,
-        computerDeck: updatedComputerDeck,
+        computerDeck: updatedComputerDeck.concat(updatedWarDeck),
         showCards: false,
+        warDeck: [],
       }));
     }
     if (state.roundWinner === "TIE") {
-      updatedComputerDeck.shift();
-      updatedPlayerDeck.shift();
-      updatedWarDeck.push(playerCard, computerCard);
-      console.log("updatedwardeck is", updatedWarDeck);
+      flipCard();
 
-      //pulled in from determine winner since state change is async
+      //   //pulled in from determine winner since state change is async
 
-      const playerValue = Number(cardMap[updatedPlayerDeck[0].substring(1)]);
-      const computerValue = Number(
-        cardMap[updatedComputerDeck[0].substring(1)]
-      );
+      //   const playerValue = Number(cardMap[updatedPlayerDeck[0].substring(1)]);
+      //   const computerValue = Number(
+      //     cardMap[updatedComputerDeck[0].substring(1)]
+      //   );
 
-      if (playerValue > computerValue) {
-        setState((prev) => ({
-          ...prev,
-          playerDeck: updatedPlayerDeck.concat(updatedWarDeck),
-          computerDeck: updatedComputerDeck,
-          roundWinner: "PLAYER",
-          warDeck: [],
-        }));
-      } else if (playerValue < computerValue) {
-        setState((prev) => ({
-          ...prev,
-          playerDeck: updatedPlayerDeck,
-          computerDeck: updatedComputerDeck.concat(updatedWarDeck),
-          roundWinner: "COMPUTER",
-          warDeck: [],
-        }));
-      } else {
-        console.log("setting wardeck state here");
-        setState((prev) => ({
-          ...prev,
-          warDeck: updatedWarDeck,
-          playerDeck: updatedPlayerDeck,
-          computerDeck: updatedComputerDeck,
-          roundWinner: "TIE",
-        }));
-      }
+      //   if (playerValue > computerValue) {
+      //     setState((prev) => ({
+      //       ...prev,
+      //       playerDeck: updatedPlayerDeck.concat(updatedWarDeck),
+      //       computerDeck: updatedComputerDeck,
+      //       roundWinner: "PLAYER",
+      //       warDeck: [],
+      //     }));
+      //   } else if (playerValue < computerValue) {
+      //     setState((prev) => ({
+      //       ...prev,
+      //       playerDeck: updatedPlayerDeck,
+      //       computerDeck: updatedComputerDeck.concat(updatedWarDeck),
+      //       roundWinner: "COMPUTER",
+      //       warDeck: [],
+      //     }));
+      //   } else {
+      //     console.log("setting wardeck state here");
+      //     setState((prev) => ({
+      //       ...prev,
+      //       warDeck: updatedWarDeck,
+      //       playerDeck: updatedPlayerDeck,
+      //       computerDeck: updatedComputerDeck,
+      //       roundWinner: "TIE",
+      //     }));
+      //   }
     }
   };
 
   const flipCard = function () {
-    // console.log("flipcard is firing");
+    console.log("flipcard is firing");
     setState((prev) => ({
       ...prev,
       showCards: true,
@@ -217,8 +216,8 @@ function App() {
     );
   };
 
-  // console.log("winnder is", determineWinner("♥7", "♣4", state));
-
+  //CONDITIONAL RENDERING STARTS
+  //game over views
   if (state.playerDeck.length === 0) {
     return (
       <div className="game-over">
@@ -233,6 +232,7 @@ function App() {
       </div>
     );
   }
+  //landing view
   if (!state.gameStarted) {
     return (
       <div className="landing">
@@ -254,13 +254,13 @@ function App() {
       </div>
     );
   }
-
+  //tie view
   if (state.roundWinner === "TIE") {
     return (
       <>
         <div className="flex">
           <div className="play-button">
-            <button className="play-button" onClick={handleWinnings}>
+            <button className="play-button" onClick={flipCard}>
               War!
             </button>
           </div>
@@ -290,7 +290,7 @@ function App() {
       </>
     );
   }
-
+  //flipped cards view
   if (state.showCards) {
     return (
       <>
@@ -300,14 +300,14 @@ function App() {
             <div className={"card-grid"}>
               <CardBack
                 deck={"COMPUTER"}
-                cardsRemaining={state.computerDeck.length - 1}
+                cardsRemaining={state.computerDeck.length}
               />
               <Card card={state.computerDeck[0]} />
             </div>
             <div className={"card-grid"}>
               <CardBack
                 deck={"PLAYER"}
-                cardsRemaining={state.playerDeck.length - 1}
+                cardsRemaining={state.playerDeck.length}
               />
               <Card card={state.playerDeck[0]} />
             </div>
@@ -317,7 +317,7 @@ function App() {
       </>
     );
   }
-
+  //hidden cards view
   return (
     <div className="flex">
       <div className="play-button">

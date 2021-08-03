@@ -4,6 +4,10 @@ Find the deployed game here: https://wizardly-rosalind-83d014.netlify.app/(https
 
 Here's a sneak preview:
 
+[Screenshot of Desktop View](https://github.com/BCerki/card-game/blob/production/docs/desktopView.png)
+
+[Gif of Mobile View](https://github.com/BCerki/card-game/blob/production/docs/mobileView.gif)
+
 ## Tech Stack
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -20,4 +24,4 @@ You will also see any lint errors in the console.
 
 ## Current Contributors
 
-- Brianna Cerkiewicz(https://github.com/BCerki/)
+- Brianna Cerkiewicz (https://github.com/BCerki/)

@@ -231,7 +231,7 @@ span.face-card {
   font-family: "Roboto", sans-serif;
   font-weight: 700;
   font-size: 1.75em;
-  opacity: 100%;
+  opacity: 1;
 }
 
 .cards-remaining {

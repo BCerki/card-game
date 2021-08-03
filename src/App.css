@@ -10,16 +10,25 @@ button {
   color: white;
   padding: 0.5em;
   text-transform: uppercase;
-  font-family: "MedievalSharp", cursive;
+  /* font-family: "MedievalSharp", cursive; */
   letter-spacing: 0.1em;
   border: white solid 1px;
   height: auto;
   z-index: 5;
+  margin: 1em;
+  width: 10em;
 }
 
 a {
   color: white;
   text-decoration: none;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* landing */
@@ -35,15 +44,18 @@ a {
   background-size: cover;
 }
 
+button.start {
+  font-weight: 600;
+  /* height: 4em; */
+  /* width: 16em; */
+  font-size: 1.5em;
+}
+
 .credits {
   font-size: 0.5em;
   font-family: "MedievalSharp", cursive;
   color: white;
   margin-bottom: 0.5em;
-}
-
-button.start {
-  font-family: "Roboto", sans-serif;
 }
 
 @keyframes war {

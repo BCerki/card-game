@@ -72,6 +72,7 @@ function App() {
     showCards: false,
     roundWinner: null, //don't need an overall winner; use deck length
     warDeck: [],
+    destination: null,
   });
   // console.log("state at beginning of app is", state);
 
@@ -233,6 +234,11 @@ function App() {
     );
   };
 
+  //do this with react-router-dom post-hackaton
+  const redirect = function (destination) {
+    setState((prev) => ({ ...prev, destination: destination }));
+  };
+
   //CONDITIONAL RENDERING STARTS
   //game over views
   if (state.playerDeck.length === 0) {
@@ -254,10 +260,13 @@ function App() {
     return (
       <div className="landing">
         <div className="war">War</div>
-
-        <button className="start" onClick={startGame}>
-          Start game
-        </button>
+        <div className="button-group">
+          <button className="start" onClick={startGame}>
+            Start game
+          </button>
+          <button onClick={() => redirect("rules")}>Rules</button>
+          <button onClick={() => redirect("about")}>About</button>
+        </div>
         {/* <div className="credits">
           Photo by{" "}
           <a href="https://unsplash.com/@birminghammuseumstrust?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">

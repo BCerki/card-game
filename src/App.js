@@ -330,7 +330,9 @@ function App() {
             </div>
           </div>
         </div>
-        <div className="winner-announcement">{state.roundWinner} wins!</div>
+        <div className="winner-announcement">
+          {state.roundWinner} wins this round!
+        </div>
       </>
     );
   }

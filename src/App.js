@@ -61,8 +61,8 @@ function App() {
   //real decks
   // const { playerDeck, computerDeck } = generateDecks();
   //stacked decks for testing
-  const computerDeck = ["♠6", "♠8", "♥8", "♥1"];
-  const playerDeck = ["♠6", "♠7", "♥9", "♥2"];
+  const computerDeck = ["♠6", "♠8", "♥10", "♥12"];
+  const playerDeck = ["♠6", "♠7", "♥9", "♥11"];
 
   //state management
   const [state, setState] = useState({
@@ -172,10 +172,10 @@ function App() {
       setState((prev) => ({
         ...prev,
         roundWinner: "COMPUTER",
-        playerDeck: updatedPlayerDeck.concat(updatedWarDeck),
+        playerDeck: updatedPlayerDeck,
         computerDeck: updatedComputerDeck,
+        warDeck: updatedWarDeck,
         // showCards: false,
-        warDeck: [],
       }));
     }
     if (playerValue < computerValue) {
@@ -183,9 +183,9 @@ function App() {
         ...prev,
         roundWinner: "COMPUTER",
         playerDeck: updatedPlayerDeck,
-        computerDeck: updatedComputerDeck.concat(updatedWarDeck),
+        computerDeck: updatedComputerDeck,
+        warDeck: updatedWarDeck,
         // showCards: false,
-        warDeck: [],
       }));
     }
     if (playerValue === computerValue) {

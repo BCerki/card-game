@@ -258,7 +258,7 @@ function App() {
     );
   }
   //landing view
-  if (!state.gameStarted) {
+  if (!state.gameStarted && state.destination === null) {
     return (
       <div className="landing">
         <div className="war">War</div>
@@ -284,11 +284,60 @@ function App() {
   }
 
   if (state.destination === "rules") {
-    return <div>Rules of war</div>;
+    return (
+      <div className="text-page">
+        <h1 className="rules">Rules</h1>
+        <p className="rules">
+          In this version of the classic card game War, you'll take on your
+          computer. Once you've started the game, click the "Flip Card" button
+          to start the first battle. Whoever has the higher card wins both cards
+          (ace is high, and suits are irrelevant). If you win, click the
+          "Collect Winnings" button to add the cards to your deck. If you lose,
+          click the "Give Up Winnings" button to give your cards to the
+          computer.
+        </p>
+        <p className="rules">
+          If you and the computer have the same card, it's WAR! Click the "WAR!"
+          button to keep flipping cards until the tie ends and either you or the
+          computer has a higher card. If you win a war, you win the entire stack
+          of cards that was part of the war.
+        </p>
+        <p className="rules">
+          The game ends when either you or the computer runs out of cards. The
+          player with the whole deck wins. Good luck!
+        </p>
+        <div className="back">
+          <button onClick={() => redirect(null)}>Back to home page</button>
+        </div>
+      </div>
+    );
   }
 
   if (state.destination === "about") {
-    return <div>About</div>;
+    return (
+      <div className="text-page">
+        <h1 className="about">About</h1>
+
+        <p className="rules">
+          Welcome! My name is Brianna and I live in Victoria, BC. I made this
+          game during Mintbean's{" "}
+          <a href="https://mintbean.io/meets/7e2331fb-1e0d-4b31-86b9-a46acad877af">
+            Hiring Hackathon for Jr Web Devs
+          </a>{" "}
+          . I hope you enjoy it! You can learn more about me and my work on{" "}
+          <a href="https://www.linkedin.com/in/brianna-cerkiewicz-26156063/">
+            LinkedIn
+          </a>{" "}
+          or <a href="https://github.com/BCerki/">Github</a>.
+        </p>
+        <p className="rules"></p>
+        <div className="back">
+          <button className="back" onClick={() => redirect(null)}>
+            Back to home page
+          </button>
+        </div>
+      </div>
+    );
   }
 
   //GAME VIEWS

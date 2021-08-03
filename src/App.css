@@ -21,7 +21,6 @@ button {
 
 a {
   color: white;
-  text-decoration: none;
 }
 
 .button-group {
@@ -84,6 +83,41 @@ button.start {
   color: white;
   border-radius: 50px;
   overflow: hidden;
+}
+
+/* text pages */
+.text-page {
+  display: flex;
+  flex-direction: column;
+  width: 90vw;
+  margin: 1em;
+  font-family: "Roboto", sans-serif;
+  max-width: 50vw;
+}
+
+p.rules {
+  color: white;
+  margin-bottom: -0.25em;
+}
+
+h1 {
+  font-family: "MedievalSharp", cursive;
+  color: white;
+  /* font-size: 5vw; */
+}
+
+.back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1em;
+}
+
+.about-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 /* game over */
@@ -343,6 +377,9 @@ span.round-winner {
   }
   .winner {
     font-size: 1.5em;
+  }
+  .text-page {
+    max-width: 90vw;
   }
 }
 

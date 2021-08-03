@@ -61,8 +61,8 @@ function App() {
   //real decks
   // const { playerDeck, computerDeck } = generateDecks();
   //stacked decks for testing
-  const computerDeck = ["♠6", "♠8", "♥8"];
-  const playerDeck = ["♠6", "♠8", "♥9"];
+  const computerDeck = ["♠6", "♠8", "♥8", "♥1"];
+  const playerDeck = ["♠6", "♠7", "♥9", "♥2"];
 
   //state management
   const [state, setState] = useState({
@@ -143,41 +143,8 @@ function App() {
       }));
     }
     if (state.roundWinner === "TIE") {
-      flipCard();
-
-      //   //pulled in from determine winner since state change is async
-
-      //   const playerValue = Number(cardMap[updatedPlayerDeck[0].substring(1)]);
-      //   const computerValue = Number(
-      //     cardMap[updatedComputerDeck[0].substring(1)]
-      //   );
-
-      //   if (playerValue > computerValue) {
-      //     setState((prev) => ({
-      //       ...prev,
-      //       playerDeck: updatedPlayerDeck.concat(updatedWarDeck),
-      //       computerDeck: updatedComputerDeck,
-      //       roundWinner: "PLAYER",
-      //       warDeck: [],
-      //     }));
-      //   } else if (playerValue < computerValue) {
-      //     setState((prev) => ({
-      //       ...prev,
-      //       playerDeck: updatedPlayerDeck,
-      //       computerDeck: updatedComputerDeck.concat(updatedWarDeck),
-      //       roundWinner: "COMPUTER",
-      //       warDeck: [],
-      //     }));
-      //   } else {
-      //     console.log("setting wardeck state here");
-      //     setState((prev) => ({
-      //       ...prev,
-      //       warDeck: updatedWarDeck,
-      //       playerDeck: updatedPlayerDeck,
-      //       computerDeck: updatedComputerDeck,
-      //       roundWinner: "TIE",
-      //     }));
-      //   }
+      console.log("am i getting called");
+      determineWinner();
     }
   };
 

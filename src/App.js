@@ -128,6 +128,7 @@ function App() {
     if (state.roundWinner === "COMPUTER") {
       setState((prev) => ({
         ...prev,
+
         playerDeck: updatedPlayerDeck,
         computerDeck: updatedComputerDeck.concat(updatedWarDeck),
         showCards: false,
@@ -135,8 +136,65 @@ function App() {
       }));
     }
     if (state.roundWinner === "TIE") {
-      console.log("am i getting called");
-      determineWinner();
+      setState((prev) => ({
+        ...prev,
+        playerDeck: updatedPlayerDeck,
+        computerDeck: updatedComputerDeck,
+        warDeck: updatedWarDeck,
+      }));
+    }
+  };
+
+  const war = function () {
+    //make copies of all the decks in state--will be added and subtracted to depending on winner
+    const updatedComputerDeck = [...state.computerDeck];
+    const updatedPlayerDeck = [...state.playerDeck];
+    const updatedWarDeck = [...state.warDeck];
+
+    //convenience variables for currently played card
+    let playerCard = updatedPlayerDeck[0];
+    let computerCard = updatedComputerDeck[0];
+    console.log("player card is", playerCard, computerCard);
+
+    //remove the played cards from the player and computer decks and put in a temp deck
+    updatedWarDeck.push(playerCard, computerCard);
+    updatedPlayerDeck.shift();
+    updatedComputerDeck.shift();
+
+    playerCard = updatedPlayerDeck[0];
+    computerCard = updatedComputerDeck[0];
+    console.log("player card is", playerCard, computerCard);
+
+    const playerValue = Number(cardMap[playerCard.substring(1)]);
+    const computerValue = Number(cardMap[computerCard.substring(1)]);
+
+    if (playerValue > computerValue) {
+      setState((prev) => ({
+        ...prev,
+        roundWinner: "COMPUTER",
+        playerDeck: updatedPlayerDeck.concat(updatedWarDeck),
+        computerDeck: updatedComputerDeck,
+        // showCards: false,
+        warDeck: [],
+      }));
+    }
+    if (playerValue < computerValue) {
+      setState((prev) => ({
+        ...prev,
+        roundWinner: "COMPUTER",
+        playerDeck: updatedPlayerDeck,
+        computerDeck: updatedComputerDeck.concat(updatedWarDeck),
+        // showCards: false,
+        warDeck: [],
+      }));
+    }
+    if (playerValue === computerValue) {
+      setState((prev) => ({
+        ...prev,
+        playerDeck: updatedPlayerDeck,
+        computerDeck: updatedComputerDeck,
+        warDeck: updatedWarDeck,
+      }));
     }
   };
 
@@ -219,7 +277,7 @@ function App() {
       <>
         <div className="flex">
           <div className="play-button">
-            <button className="play-button" onClick={flipCard}>
+            <button className="play-button" onClick={war}>
               War!
             </button>
           </div>

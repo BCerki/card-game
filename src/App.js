@@ -73,11 +73,11 @@ function App() {
     roundWinner: null, //don't need an overall winner; use deck length
     warDeck: [],
   });
-  console.log("state at beginning of app is", state);
+  // console.log("state at beginning of app is", state);
 
   //gameplay functions
   const determineWinner = function () {
-    console.log("state at the beginning of determineWinner is", state);
+    // console.log("state at the beginning of determineWinner is", state);
 
     //convenience variables for currently played card
     const playerCard = state.playerDeck[0];
@@ -154,7 +154,7 @@ function App() {
     //convenience variables for currently played card
     let playerCard = updatedPlayerDeck[0];
     let computerCard = updatedComputerDeck[0];
-    console.log("player card is", playerCard, computerCard);
+    // console.log("player card is", playerCard, computerCard);
 
     //remove the played cards from the player and computer decks and put in a temp deck
     updatedWarDeck.push(playerCard, computerCard);
@@ -163,7 +163,7 @@ function App() {
 
     playerCard = updatedPlayerDeck[0];
     computerCard = updatedComputerDeck[0];
-    console.log("player card is", playerCard, computerCard);
+    // console.log("player card is", playerCard, computerCard);
 
     const playerValue = Number(cardMap[playerCard.substring(1)]);
     const computerValue = Number(cardMap[computerCard.substring(1)]);
@@ -199,7 +199,7 @@ function App() {
   };
 
   const flipCard = function () {
-    console.log("flipcard is firing");
+    // console.log("flipcard is firing");
     setState((prev) => ({
       ...prev,
       showCards: true,

@@ -72,7 +72,7 @@ function App() {
     showCards: false,
     roundWinner: null, //don't need an overall winner; use deck length
     warDeck: [],
-    destination: null,
+    destination: null, //post-hackathon: do this with react router instead
   });
   console.log("state.destination is", state.destination);
   // console.log("state at beginning of app is", state);
@@ -100,7 +100,7 @@ function App() {
     if (playerValue === computerValue) {
       roundWinner = "TIE";
     }
-    //put all the above calculations into state
+    //put the winner into state
     setState((prev) => ({
       ...prev,
       roundWinner: roundWinner,
@@ -148,7 +148,7 @@ function App() {
   };
 
   const war = function () {
-    //make copies of all the decks in state--will be added and subtracted to depending on winner
+    //post-hackathon: DRY this up, repetitive of previous two functions
     const updatedComputerDeck = [...state.computerDeck];
     const updatedPlayerDeck = [...state.playerDeck];
     const updatedWarDeck = [...state.warDeck];
@@ -177,7 +177,6 @@ function App() {
         playerDeck: updatedPlayerDeck,
         computerDeck: updatedComputerDeck,
         warDeck: updatedWarDeck,
-        // showCards: false,
       }));
     }
     if (playerValue < computerValue) {
@@ -187,7 +186,6 @@ function App() {
         playerDeck: updatedPlayerDeck,
         computerDeck: updatedComputerDeck,
         warDeck: updatedWarDeck,
-        // showCards: false,
       }));
     }
     if (playerValue === computerValue) {
@@ -235,14 +233,16 @@ function App() {
     );
   };
 
-  //do this with react-router-dom post-hackaton
+  ////post-hackathon: do this with react router
   const redirect = function (destination) {
     console.log("destination is", destination);
     setState((prev) => ({ ...prev, destination: destination }));
   };
 
   //CONDITIONAL RENDERING STARTS
+  //post-hackathon: DRY these up, make separate components
   //game over views
+
   if (state.playerDeck.length === 0) {
     return (
       <div className="game-over">
@@ -269,16 +269,6 @@ function App() {
           <button onClick={() => redirect("rules")}>Rules</button>
           <button onClick={() => redirect("about")}>About</button>
         </div>
-        {/* <div className="credits">
-          Photo by{" "}
-          <a href="https://unsplash.com/@birminghammuseumstrust?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">
-            Birmingham Museums Trust
-          </a>{" "}
-          on{" "}
-          <a href="https://unsplash.com/s/photos/war?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">
-            Unsplash
-          </a>
-        </div> */}
       </div>
     );
   }
